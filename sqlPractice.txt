@@ -1,0 +1,114 @@
+Table - 
+
+CREATE TABLE Student (      
+  id int PRIMARY KEY IDENTITY,     
+  admission_no varchar(45) NOT NULL,  
+  first_name varchar(45) NOT NULL,      
+  last_name varchar(45) NOT NULL,  
+  age int,  
+  city varchar(25) NOT NULL      
+);    
+  
+CREATE TABLE Fee (   
+  admission_no varchar(45) NOT NULL,  
+  course varchar(45) NOT NULL,      
+  amount_paid int,    
+);  
+
+
+
+INSERT INTO Student (admission_no, first_name, last_name, age, city)       
+VALUES (3354,'Luisa', 'Evans', 13, 'Texas'),       
+(2135, 'Paul', 'Ward', 15, 'Alaska'),       
+(4321, 'Peter', 'Bennett', 14, 'California'),    
+(4213,'Carlos', 'Patterson', 17, 'New York'),       
+(5112, 'Rose', 'Huges', 16, 'Florida'),  
+(6113, 'Marielia', 'Simmons', 15, 'Arizona'),    
+(7555,'Antonio', 'Butler', 14, 'New York'),       
+(8345, 'Diego', 'Cox', 13, 'California');  
+  
+  
+INSERT INTO Fee (admission_no, course, amount_paid)       
+VALUES (3354,'Java', 20000),       
+(7555, 'Android', 22000),       
+(4321, 'Python', 18000),    
+(8345,'SQL', 15000),       
+(5112, 'Machine Learning', 30000);  
+
+
+
+Q1. MySQL concatenate
+
+Ans.  SELECT concat(first_name," ",last_name) AS Full_Name FROM `student`;
+
+
+Q2. MySQL Get Current Date, User, Version
+
+Ans.  SELECT CURRENT_DATE as Today;
+
+SELECT CURRENT_USER as Today;
+
+SELECT version();
+
+
+Q3. MySQL Get Maximum Value
+Ans. SELECT max(amount_paid) as Amount_paid FROM `fee`;
+
+Q4. MySQL Administrator
+Ans. NOT RESOLVED
+
+Q5. MySQL where clause
+Ans. SELECT * FROM `student` WHERE city = 'New York';
+
+Q6. MySQL order by
+Ans. SELECT * FROM `student` ORDER BY age DESC ;
+
+Q7. MySQL get difference between two dates
+Ans. SELECT datediff(now(),'2021-10-03');
+
+Q8. MySQL Pattern Matching
+Ans. SELECT * FROM `student` where city LIKE '%York';
+
+Q9. MySQL Regular Expression
+Ans. SELECT * FROM student WHERE first_name REGEXP '^pa';
+
+SELECT first_name FROM student WHERE first_name REGEXP 'pa|ca' ;
+
+SELECT first_name FROM student WHERE first_name REGEXP '^[a-c]';
+
+SELECT first_name FROM student WHERE first_name REGEXP 'os[[:>:]]';
+
+
+Q10. MySQL delete duplicate row
+Ans. DELETE s1 FROM student s1 INNER JOIN student s2 WHERE s1.id < s2.id AND s1.first_name = s2.first_name;
+
+Q11. MySQL update multiple rows
+Ans. UPDATE fee SET amount_paid = 40000 WHERE course = 'Java' OR course = 'Android';
+
+Q12. Get nth highest salary using MySQL
+Ans. // SELECT * FROM fee ORDER BY 'amount_paid' ASC LIMIT n-1,1;
+
+SELECT * FROM fee ORDER BY 'amount_paid' ASC LIMIT 3,1;
+
+Q13. Display the nth row from MySQL
+Ans. // SELECT * FROM fee LIMIT n-1,1;
+
+SELECT * FROM fee LIMIT 3,1;
+
+Q14. Commit and rollback in mysql
+Ans. SET autocommit=0;
+	INSERT INTO Student (admission_no, first_name, last_name, age, city)       
+VALUES (3354,'Luisa', 'Evans', 13, 'Texas'),       
+(2135, 'Paul', 'Ward', 15, 'Alaska');
+
+COMMIT;
+
+INSERT INTO Student (admission_no, first_name, last_name, age, city)       
+VALUES (3354,'Luisa', 'Evans', 13, 'Texas'),       
+(2135, 'Paul', 'Ward', 15, 'Alaska');
+
+ROLLBACK;
+
+Q15. MySQL SELECT top 5
+Ans. SELECT * FROM `student` LIMIT 5;
+SELECT * FROM `student` ORDER BY age DESC LIMIT 5;
